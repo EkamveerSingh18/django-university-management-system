@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Marks</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">UMS</div>
+    <div class="nav-links">
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/logout/">Logout</a>
+    </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+    <h2>Add Marks</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- SUBJECT DROPDOWN (AUTO LOAD STUDENTS) -->
+        <label>Select Subject</label>
+        <select name="subject" onchange="this.form.submit()" required>
+            <option value="">-- Select Subject --</option>
+            {% for subject in subjects %}
+                <option value="{{ subject.id }}"
+                    {% if selected_subject and subject.id == selected_subject.id %}
+                        selected
+                    {% endif %}
+                >
+                    {{ subject.name }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        {% if students %}
+            <h3>Enter Marks (Out of 100)</h3>
+
+            {% for student in students %}
+                <p>
+                    {{ student.user.username }}
+                    <input type="number"
+                           name="{{ student.id }}"
+                           min="0"
+                           max="100"
+                           placeholder="Out of 100"
+                           style="width:120px; margin-left:10px;">
+                </p>
+            {% endfor %}
+
+            <button type="submit">Save Marks</button>
+
+        {% else %}
+            <p style="color: gray;">
+                Please select a subject to load students.
+            </p>
+        {% endif %}
+    </form>
+</div>
+
+</body>
+</html>

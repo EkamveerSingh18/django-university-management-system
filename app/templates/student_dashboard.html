@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Welcome {{ student.user.username }}</h2>
+
+    <div class="card">
+        <p><strong>Attendance:</strong> {{ attendance_percentage }}%</p>
+        <p><strong>Marks:</strong> {{ marks_percentage }}%</p>
+    </div>
+
+    <table>
+        <tr>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+        {% for m in marks_records %}
+        <tr>
+            <td>{{ m.subject.name }}</td>
+            <td>{{ m.marks }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+<h3>Attendance Summary</h3>
+<p><strong>Attendance Percentage:</strong> {{ attendance_percentage }}%</p>
+
+<br>
+
+<h3>Date-wise Attendance</h3>
+
+<table>
+    <tr>
+        <th>Date</th>
+        <th>Subject</th>
+        <th>Status</th>
+    </tr>
+
+    {% for a in attendance_records %}
+    <tr>
+        <td>{{ a.date }}</td>
+        <td>{{ a.subject.name }}</td>
+        <td>
+            {% if a.status %}
+                <span style="color:green;font-weight:600;">Present</span>
+            {% else %}
+                <span style="color:red;font-weight:600;">Absent</span>
+            {% endif %}
+        </td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="3">No attendance records found</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>

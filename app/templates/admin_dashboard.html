@@ -1,0 +1,30 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="nav-left">
+        <div class="logo">UMS</div>
+        <div class="brand">Admin Portal</div>
+    </div>
+    <div class="nav-links">
+        <a href="/admin/">Admin Panel</a>
+        <a href="/logout/">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+    <div class="card">
+        <h3>Admin Controls</h3>
+        <p>All system data is managed via Django Admin.</p>
+        <a href="/admin/" class="btn">Go to Admin</a>
+    </div>
+</div>
+
+</body>
+</html>

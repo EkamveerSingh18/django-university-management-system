@@ -1,0 +1,8 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% extends 'base.html' %}
+{% block content %}
+<h3>Add Course</h3>
+<p>Only Admin can add new courses.</p>
+<a href="/admin/ums/course/add/">Add Course in Admin</a>
+{% endblock %}

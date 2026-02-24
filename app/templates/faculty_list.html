@@ -1,0 +1,8 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% extends 'base.html' %}
+{% block content %}
+<h3>Faculty List</h3>
+<p>Faculty data is managed centrally by Admin.</p>
+<a href="/admin/ums/faculty/">Open Faculty in Admin</a>
+{% endblock %}

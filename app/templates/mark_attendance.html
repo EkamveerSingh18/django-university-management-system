@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+    <div class="logo">UMS</div>
+    <div class="nav-links">
+        <a href="/dashboard/">Dashboard</a>
+        <a href="/logout/">Logout</a>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+    <h2>Mark Attendance</h2>
+
+    <form method="post">
+        {% csrf_token %}
+
+        <!-- SUBJECT DROPDOWN (AUTO SUBMIT) -->
+        <label>Select Subject</label>
+        <select name="subject" onchange="this.form.submit()" required>
+            <option value="">-- Select Subject --</option>
+            {% for subject in subjects %}
+                <option value="{{ subject.id }}"
+                    {% if selected_subject and subject.id == selected_subject.id %}
+                        selected
+                    {% endif %}
+                >
+                    {{ subject.name }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <!-- DATE PICKER -->
+        <label>Select Date</label>
+        <input type="date" name="attendance_date" required>
+
+        <br><br>
+
+        <!-- STUDENT LIST -->
+        {% if students %}
+            <h3>Students</h3>
+            {% for student in students %}
+                <p>
+                    <input type="checkbox" name="{{ student.id }}">
+                    {{ student.user.username }}
+                </p>
+            {% endfor %}
+
+            <button type="submit">Submit Attendance</button>
+        {% else %}
+            <p style="color: gray;">
+                Please select a subject to load students.
+            </p>
+        {% endif %}
+    </form>
+</div>
+
+</body>
+</html>

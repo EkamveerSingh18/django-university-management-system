@@ -1,0 +1,8 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% extends 'base.html' %}
+{% block content %}
+<h3>Edit Student</h3>
+<p>Editing student details is restricted to Admin.</p>
+<a href="/admin/">Go to Admin Panel</a>
+{% endblock %}

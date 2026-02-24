@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="nav-left">
+        <div class="logo">UMS</div>
+        <div class="brand">Attendance</div>
+    </div>
+    <div class="nav-links">
+        <a href="/dashboard/">Dashboard</a>
+    </div>
+</div>
+
+<div class="container">
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Status</th>
+        </tr>
+        {% for a in records %}
+        <tr>
+            <td>{{ a.date }}</td>
+            <td>{{ a.status|yesno:"Present,Absent" }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="2">No records</td></tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Marks</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="nav-left">
+        <div class="logo">UMS</div>
+        <div class="brand">Marks</div>
+    </div>
+    <div class="nav-links">
+        <a href="/dashboard/">Dashboard</a>
+    </div>
+</div>
+
+<div class="container">
+    <table>
+        <tr>
+            <th>Subject</th>
+            <th>Marks</th>
+        </tr>
+        {% for m in records %}
+        <tr>
+            <td>{{ m.subject }}</td>
+            <td>{{ m.marks }}</td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="2">No marks</td></tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>

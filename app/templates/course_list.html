@@ -1,0 +1,8 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% extends 'base.html' %}
+{% block content %}
+<h3>Course List</h3>
+<p>Courses are created and managed by Admin.</p>
+<a href="/admin/ums/course/">View Courses in Admin</a>
+{% endblock %}

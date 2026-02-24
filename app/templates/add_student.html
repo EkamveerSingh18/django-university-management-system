@@ -1,0 +1,8 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% extends 'base.html' %}
+{% block content %}
+<h3>Add Student</h3>
+<p>Student creation is handled by Admin for security reasons.</p>
+<a href="/admin/ums/student/add/">Add Student in Admin</a>
+{% endblock %}

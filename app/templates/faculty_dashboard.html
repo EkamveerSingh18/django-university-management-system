@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Faculty Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="navbar">
+    <div class="logo">UMS</div>
+    <div class="nav-links">
+        <a href="/logout/">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Faculty Dashboard</h2>
+
+    <div class="card-grid">
+        {% for subject in subjects %}
+        <div class="card">
+            <h3>{{ subject.name }}</h3>
+            <p>{{ subject.code }}</p>
+            <a href="/mark-attendance/" class="btn">
+    Mark Attendance
+</a>
+
+<a href="/add-marks/" class="btn btn-secondary">
+    Add Marks
+</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+</body>
+</html>
